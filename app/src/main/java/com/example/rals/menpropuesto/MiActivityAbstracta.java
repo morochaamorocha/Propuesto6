@@ -20,7 +20,9 @@ public abstract class MiActivityAbstracta extends Activity {
 
     private ListView listPaises;
     private ArrayList<String> paises;
+    private ArrayAdapter<String> adapter;
     private Boolean menu;
+
 
 
     public abstract Boolean menuContextual();
@@ -37,9 +39,12 @@ public abstract class MiActivityAbstracta extends Activity {
         //Establecemos eltipo de menu que implaemantará
         menu = menuContextual();
 
+        //Instaciamos el adaptador
+        adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1, paises);
+
         //Asignamos la vista a la lista y luego le asignamos el adaptador
         listPaises = (ListView)findViewById(R.id.list_paises);
-        listPaises.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1, paises));
+        listPaises.setAdapter(adapter);
 
         if (menu){
             registerForContextMenu(listPaises);
